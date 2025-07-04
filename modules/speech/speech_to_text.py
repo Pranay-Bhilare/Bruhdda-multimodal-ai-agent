@@ -1,6 +1,10 @@
 from groq import Groq
 import os
 import tempfile
+from dotenv import load_dotenv
+load_dotenv()
+class SpeechToTextError(Exception):
+    pass
 class SpeechToText(): 
     def __init__(self) -> None:
         self._client = Groq(api_key=os.getenv("GROQ_API_KEY"))
@@ -29,4 +33,4 @@ class SpeechToText():
             finally :
                 os.unlink(temp_file_path)
         except Exception as e :
-            raise ValueError(f"Speech-to-text conversion failed: {str(e)}") from e
+            raise SpeechToTextError(f"Speech-to-text conversion failed: {str(e)}") from e
