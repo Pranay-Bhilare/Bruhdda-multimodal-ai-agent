@@ -2,3 +2,4 @@ langgraph
 langchain_groq
 python-dotenv
 elevenlabs
+together
